@@ -51,7 +51,7 @@ export function createPlanet(
 
   const pathPoints = orbitPath.getPoints(100);
   const orbitGeometry = new THREE.BufferGeometry().setFromPoints(pathPoints);
-  const orbitMaterial = new THREE.LineBasicMaterial({ color: 0xFFFFFF, transparent: true, opacity: 0.01 });
+  const orbitMaterial = new THREE.LineBasicMaterial({ color: 0xFFFFFF, transparent: true, opacity: 0.03 });
   const orbit = new THREE.LineLoop(orbitGeometry, orbitMaterial);
   orbit.rotation.x = Math.PI / 2;
   planetSystem.add(orbit);
