@@ -8,25 +8,23 @@ export function createSunAndAddToScene() {
 
   texture.wrapS = THREE.ClampToEdgeWrapping;
   texture.wrapT = THREE.ClampToEdgeWrapping;
+
   texture.minFilter = THREE.NearestFilter;
 
   const sunSize = 697 / 40;
+
   const geometry = new THREE.SphereGeometry(sunSize, 32, 20);
+
   const surface = new THREE.MeshPhongMaterial({
     map: texture,
     lightMap: texture,
-    transparent: true,
-    opacity: 0.8,
+    emissiveIntensity: 1.6,
+    emissive: 0xFFC072
   })
 
   const sun = new THREE.Mesh(geometry, surface);
 
-  const sunLight = new THREE.PointLight(
-    0xffffff,
-    5,
-    50,
-    2
-  );
+  const sunLight = new THREE.PointLight(0xFDFFD3, 1200, 400, 1.4);
 
   sun.add(sunLight);
 
