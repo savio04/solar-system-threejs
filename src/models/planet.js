@@ -3,12 +3,15 @@ import * as THREE from 'three';
 export function createPlanet({
   size,
   position,
+  name,
+  description,
   tilt,
   texture,
   bump,
   ring,
   atmosphere,
   moons,
+  offset,
   initialAngle = 0
 }) {
   const loadTexture = new THREE.TextureLoader();
@@ -43,24 +46,25 @@ export function createPlanet({
 
   planet.position.set(initialX, 0, initialZ);
   planet.rotation.z = tilt * Math.PI / 180;
+  planet["name"] = name
+  planet["description"] = description
+  planet["offset"] = offset
 
-  // add orbit path
   const orbitPath = new THREE.EllipseCurve(
-    0, 0,            // ax, aY
-    position, position, // xRadius, yRadius
-    0, 2 * Math.PI,   // aStartAngle, aEndAngle
-    false,            // aClockwise
-    0                 // aRotation
+    0, 0,
+    position, position,
+    0, 2 * Math.PI,
+    false,
+    0
   );
 
   const pathPoints = orbitPath.getPoints(100);
   const orbitGeometry = new THREE.BufferGeometry().setFromPoints(pathPoints);
-  const orbitMaterial = new THREE.LineBasicMaterial({ color: 0xFFFFFF, transparent: true, opacity: 0.1 });
+  const orbitMaterial = new THREE.LineBasicMaterial({ color: 0xFFFFFF, transparent: true, opacity: 0.03 });
   const orbit = new THREE.LineLoop(orbitGeometry, orbitMaterial);
   orbit.rotation.x = Math.PI / 2;
   planetSystem.add(orbit);
 
-  //add ring
   if (ring) {
     const RingGeo = new THREE.RingGeometry(ring.innerRadius, ring.outerRadius, 30);
     const RingMat = new THREE.MeshStandardMaterial({
@@ -75,7 +79,6 @@ export function createPlanet({
     Ring.rotation.y = -tilt * Math.PI / 180;
   }
 
-  //add atmosphere
   if (atmosphere) {
     const atmosphereGeom = new THREE.SphereGeometry(size + 0.1, 32, 20);
     const atmosphereMaterial = new THREE.MeshPhongMaterial({
@@ -91,7 +94,6 @@ export function createPlanet({
     planet.add(Atmosphere);
   }
 
-  //add moons
   if (moons) {
     moons.forEach(moon => {
       let moonMaterial;

@@ -4,27 +4,41 @@ body {
   cursor: crosshair;
 }
 
-/* Estilo geral do card */
 .planet-info {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   position: fixed;
-  bottom: 20px;
-  /* Distância da base da tela */
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
-  /* Largura ajustada para responsividade */
-  max-width: 400px;
-  /* Largura máxima em telas maiores */
+  width: 30%;
+  height: 200px;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
-  /* Bordas arredondadas */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  /* Sombra */
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
   font-family: Arial, sans-serif;
   z-index: 1000;
-  /* Certifica-se de que está acima de outros elementos */
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.planet-info.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#planet-name {
+  margin-top: 15px;
+}
+
+.image {
+  position: absolute;
+  top: -113px;
+  left: 20px;
 }
 
 .close-btn {
@@ -43,10 +57,8 @@ body {
 
 .close-btn:hover {
   color: #333;
-  /* Cor mais escura ao passar o mouse */
 }
 
-/* Títulos */
 .planet-info h3 {
   margin-top: 0;
   margin-bottom: 10px;
@@ -54,25 +66,24 @@ body {
   color: #333;
 }
 
-/* Texto */
 .planet-info p {
   margin: 5px 0;
   font-size: 1rem;
   color: #666;
 }
 
-/* Ajustes para dispositivos móveis */
-@media (max-width: 768px) {
+
+@media (max-width: 600px) {
   .planet-info {
-    bottom: 10px;
-    /* Reduz distância da base */
-    padding: 15px;
-    font-size: 0.9rem;
-    /* Ajusta tamanho do texto */
+    width: 95%;
+    bottom: 0;
+    height: 30vh;
+    border-radius: 25px 25px 0 0;
   }
 
-  .planet-info h3 {
-    font-size: 1.3rem;
-    /* Ajusta tamanho do título */
+
+  .close-btn {
+    top: 10px;
+    right: 25px;
   }
 }

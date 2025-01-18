@@ -4,7 +4,7 @@ export function createAsteroids(numberOfAsteroids, scene) {
   let asteroids = []
 
   for (let i = 0; i < numberOfAsteroids; i++) {
-    const geometry = new THREE.IcosahedronGeometry(1, 2);
+    const geometry = new THREE.SphereGeometry(1, 5);
 
     const textureLoader = new THREE.TextureLoader();
     const texture = textureLoader.load("/assets/textures/asteroid.jpg");
@@ -29,3 +29,4 @@ export function createAsteroids(numberOfAsteroids, scene) {
 
   return asteroids
 }
+

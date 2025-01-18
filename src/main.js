@@ -200,14 +200,18 @@ renderer.setAnimationLoop(animate);
 
 
 function renderPlanetInfo(planet) {
-  const info = document.getElementById('planet-info');
+  const planetInfoElement = document.getElementById("planet-info");
+  const planetNameElement = document.getElementById("planet-name")
+  const planetDescriptionElement = document.getElementById("planet-description")
 
-  info.style.display = 'block';
+  planetNameElement.innerText = planet.name
+  planetDescriptionElement.innerText = planet.description
+  planetInfoElement.classList.add("show");
 }
 
 function closePlanetInfo() {
-  const info = document.getElementById('planet-info');
-  info.style.display = 'none';
+  const planetInfoElement = document.getElementById("planet-info");
+  planetInfoElement.classList.remove("show");
   systemControls.translationSpeed = 1;
   isZoomingOut = true;
   controls.target.set(0, 0, 0);
@@ -223,10 +227,18 @@ function onClick(event) {
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-  const intersects = raycaster.intersectObjects(planets.map(item => item.planet));
+  const intersects = raycaster.intersectObjects(
+    planets.map(item => item.planet)
+  );
 
   if (intersects.length > 0) {
-    selectedPlanet = intersects[0].object;
+    selectedPlanet = intersects[intersects.length - 1].object;
+
+    const planetInfoElement = document.getElementById("planet-info")
+
+    planetInfoElement.classList.remove("show")
+
+    if (isZoomingOut) isZoomingOut = false
 
     systemControls.translationSpeed = 0
 
@@ -240,7 +252,7 @@ function onClick(event) {
         camera.position.clone()
           .sub(planetPosition)
           .normalize()
-          .multiplyScalar(60)
+          .multiplyScalar(selectedPlanet.offset || 50)
       );
 
     camera.lookAt(planetPosition);
