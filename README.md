@@ -7,6 +7,8 @@ Este projeto tem como objetivo criar uma simulação visual interativa do Sistem
 
 ![alt text](https://github.com/savio04/solar-system-threejs/blob/main/src/public/assets/demo.gif)
 
+## Execução do projeto 
+
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
@@ -16,7 +18,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 
 ```bash
 # Clone este repositório
-$ git clone <git@github.com:savio04/solar-system-threejs.git>
+$ git clone git@github.com:savio04/solar-system-threejs.git
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd solar-system-threejs
