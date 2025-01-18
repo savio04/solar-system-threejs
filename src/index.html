@@ -5,15 +5,19 @@
   <meta charset="utf-8">
   <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+  <link href="style.css" rel="stylesheet">
   <title>My first three.js app</title>
-  <style>
-    body {
-      margin: 0;
-    }
-  </style>
 </head>
 
 <body>
+  <div id="planet-info" class="planet-info">
+    <button class="close-btn" onclick="closePlanetInfo()">&times;</button>
+    <h3>Planet Name</h3>
+    <p>Distance from Sun: 149.6 million km</p>
+    <p>Mass: 5.972 × 10^24 kg</p>
+    <p>Orbital Period: 365.25 days</p>
+  </div>
+
   <script type="module" src="/main.js"></script>
 </body>
 

@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
 export function createSunAndAddToScene() {
   const loadTexture = new THREE.TextureLoader();
@@ -25,6 +25,8 @@ export function createSunAndAddToScene() {
   const sun = new THREE.Mesh(geometry, surface);
 
   const sunLight = new THREE.PointLight(0xFDFFD3, 1200, 400, 1.4);
+
+  sunLight.castShadow = true;
 
   sun.add(sunLight);
 
