@@ -82,7 +82,7 @@ bloomPass.threshold = 1;
 bloomPass.radius = 0.9;
 composer.addPass(bloomPass);
 
-//CONTROLS
+// CONTROLS
 const controls = new OrbitControls(camera, renderer.domElement);
 
 controls.enableDamping = true;
@@ -90,6 +90,11 @@ controls.enableDamping = true;
 controls.dampingFactor = 0.75;
 
 controls.screenSpacePanning = false;
+
+// SHOW ROTATION CONTROLS
+const speedContainerControl = document.getElementById("volume-control-container")
+
+speedContainerControl.classList.add("show")
 
 // MOUSE AND RAYCASTER 
 const raycaster = new THREE.Raycaster();
@@ -212,6 +217,7 @@ function renderPlanetInfo(planet) {
 function closePlanetInfo() {
   const planetInfoElement = document.getElementById("planet-info");
   planetInfoElement.classList.remove("show");
+  speedContainerControl.classList.add("show")
   systemControls.translationSpeed = 1;
   isZoomingOut = true;
   controls.target.set(0, 0, 0);
@@ -237,6 +243,7 @@ function onClick(event) {
     const planetInfoElement = document.getElementById("planet-info")
 
     planetInfoElement.classList.remove("show")
+    speedContainerControl.classList.remove("show")
 
     if (isZoomingOut) isZoomingOut = false
 
@@ -272,3 +279,20 @@ window.addEventListener('resize', () => {
 });
 
 window.closePlanetInfo = closePlanetInfo;
+
+// ROTATION AND TRANSLATION CONTROLS
+const sliderRotation = document.getElementById("volume-slider-rotation");
+const valueRotation = document.getElementById("volume-value-rotation");
+
+sliderRotation.addEventListener("input", () => {
+  valueRotation.textContent = sliderRotation.value;
+  systemControls.rotationSpeed = parseFloat(sliderRotation.value)
+});
+
+const sliderTranslation = document.getElementById("volume-slider-translation");
+const valueTranslation = document.getElementById("volume-value-translation");
+
+sliderTranslation.addEventListener("input", () => {
+  valueTranslation.textContent = sliderTranslation.value;
+  systemControls.translationSpeed = parseFloat(sliderTranslation.value)
+});
