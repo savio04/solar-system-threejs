@@ -130,7 +130,7 @@ input[type="range"]::-moz-range-thumb {
 
 
 @media (max-width: 600px) {
-  .volume-control-container {
+  #volume-control-container {
     display: none;
   }
 
