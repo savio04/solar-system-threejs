@@ -5,10 +5,9 @@ Este projeto tem como objetivo criar uma simulação visual interativa do Sistem
 
 [Explore o Sistema Solar com Three.js - Simulação Interativa](https://sistema-solar.fun)
 
+[Assista ao vídeo no YouTube](https://youtu.be/TwrXdc8JPH0)
+
 ![Animação do Sistema Solar com órbitas planetárias em 3D, criada com Three.js](https://github.com/savio04/solar-system-threejs/blob/main/src/public/assets/demo.gif)
-
-[![Assista ao vídeo no YouTube](https://img.youtube.com/vi/TwrXdc8JPH0/0.jpg)](https://youtu.be/TwrXdc8JPH0)
-
 ## Execução do projeto 
 
 ### Pré-requisitos
