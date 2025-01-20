@@ -1,7 +1,7 @@
 # Sistema solar
 ## Uso da API Three.js e conceitos de Computação Gráfica para simulação do Sistema Solar 
 
-Este projeto tem como objetivo criar uma simulação visual interativa do Sistema Solar, utilizando Three.js. O Three.js, uma ferramenta popular para renderização 3D no navegador, é utilizado para modelar e representar os planetas e suas órbitas de forma realista, permitindo uma imersão n universo do Sistema Solar.
+Este projeto tem como objetivo criar uma simulação visual interativa do Sistema Solar, utilizando o Three.js. Essa biblioteca popular para renderização 3D no navegador permite criar cenários tridimensionais de forma eficiente e flexível. Embora o foco aqui seja representar os planetas e suas órbitas de maneira realista, proporcionando uma experiência imersiva no universo do Sistema Solar, o Three.js não se limita a esse propósito.
 
 [Explore o Sistema Solar com Three.js - Simulação Interativa](https://sistema-solar.fun)
 

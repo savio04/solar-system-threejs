@@ -1,7 +1,4 @@
 export default {
-  sun: {
-
-  },
   planets: [
     {
       name: "Mercúrio",
