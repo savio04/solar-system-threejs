@@ -7,7 +7,6 @@ export function createPlanet({
   description,
   tilt,
   texture,
-  bump,
   ring,
   atmosphere,
   moons,
@@ -15,28 +14,16 @@ export function createPlanet({
   initialAngle = 0
 }) {
   const loadTexture = new THREE.TextureLoader();
-  let material;
 
-  if (texture instanceof THREE.Material) {
-    material = texture;
-  } else if (bump) {
-    material = new THREE.MeshPhongMaterial({
-      map: loadTexture.load(texture),
-      bumpMap: loadTexture.load(bump),
-      bumpScale: 0.7
-    });
-  } else {
-    material = new THREE.MeshPhongMaterial({
-      map: loadTexture.load(texture)
-    });
-  }
+  const material = new THREE.MeshPhongMaterial({
+    map: loadTexture.load(texture)
+  })
 
   const geometry = new THREE.SphereGeometry(size, 32, 20);
   const planet = new THREE.Mesh(geometry, material);
-  const planet3d = new THREE.Object3D;
 
-  const planetSystem = new THREE.Group();
-  planetSystem.add(planet);
+  const planetGroup = new THREE.Group();
+  planetGroup.add(planet);
 
   let Atmosphere;
   let Ring;
@@ -46,24 +33,29 @@ export function createPlanet({
 
   planet.position.set(initialX, 0, initialZ);
   planet.rotation.z = tilt * Math.PI / 180;
+
   planet["name"] = name
   planet["description"] = description
   planet["offset"] = offset
 
   const orbitPath = new THREE.EllipseCurve(
-    0, 0,
-    position, position,
-    0, 2 * Math.PI,
-    false,
-    0
+    0, 0,              // Centro da elipse (x, y)
+    position, position, // Raios da elipse (raioX, raioY)
+    0, 2 * Math.PI,     // Ângulo inicial e final (completa 360°)
+    false,              // Sentido horário ou anti-horário (false = anti-horário)
+    0                   // Rotação da elipse
   );
 
-  const pathPoints = orbitPath.getPoints(100);
+  const pathPoints = orbitPath.getPoints(150);
+
   const orbitGeometry = new THREE.BufferGeometry().setFromPoints(pathPoints);
   const orbitMaterial = new THREE.LineBasicMaterial({ color: 0xFFFFFF, transparent: true, opacity: 0.03 });
+
   const orbit = new THREE.LineLoop(orbitGeometry, orbitMaterial);
+
   orbit.rotation.x = Math.PI / 2;
-  planetSystem.add(orbit);
+
+  planetGroup.add(orbit);
 
   if (ring) {
     const RingGeo = new THREE.RingGeometry(ring.innerRadius, ring.outerRadius, 30);
@@ -72,8 +64,7 @@ export function createPlanet({
       side: THREE.DoubleSide
     });
     Ring = new THREE.Mesh(RingGeo, RingMat);
-    planetSystem.add(Ring);
-    // Ring.position.x = position;
+    planetGroup.add(Ring);
     Ring.position.set(initialX, 0, initialZ)
     Ring.rotation.x = -0.5 * Math.PI;
     Ring.rotation.y = -tilt * Math.PI / 180;
@@ -113,7 +104,7 @@ export function createPlanet({
       const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
       const moonOrbitDistance = size * 1.5;
       moonMesh.position.set(moonOrbitDistance, 0, 0);
-      planetSystem.add(moonMesh);
+      planetGroup.add(moonMesh);
       moon.mesh = moonMesh;
     });
   }
@@ -121,7 +112,5 @@ export function createPlanet({
   planet.castShadow = true;
   planet.receiveShadow = true;
 
-  planet3d.add(planetSystem);
-
-  return { planet, planet3d, moons }
+  return { planet, planetGroup, moons }
 }

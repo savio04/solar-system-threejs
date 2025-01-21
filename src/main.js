@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { createSunAndAddToScene } from "./models/sun.js";
+import { createSun } from "./models/sun.js";
 import { createPlanet } from "./models/planet.js";
 import { EffectComposer, OrbitControls, RenderPass, UnrealBloomPass } from "three/examples/jsm/Addons.js";
 import bgTexture1 from "/assets/textures/1.jpg";
@@ -61,7 +61,7 @@ scene.background = cubeTextureLoader.load([
 ]);
 
 //SUN
-const sun = createSunAndAddToScene()
+const sun = createSun()
 
 scene.add(sun)
 
@@ -106,7 +106,7 @@ const planets = []
 for (const { animate, ...planetData } of solarSystemData.planets) {
   const planet = createPlanet(planetData)
 
-  scene.add(planet.planet3d)
+  scene.add(planet.planetGroup)
 
   planets.push({
     ...planet,
@@ -136,7 +136,7 @@ function animate() {
     planetInfo.planet.rotateY(planetInfo.animate.rotation * systemControls.rotationSpeed)
 
     // TRANSLATION
-    planetInfo.planet3d.rotateY(planetInfo.animate.translation * systemControls.translationSpeed)
+    planetInfo.planetGroup.rotateY(planetInfo.animate.translation * systemControls.translationSpeed)
 
     // MOONS
     if (planetInfo.moons) {

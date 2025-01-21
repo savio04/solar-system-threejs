@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-export function createSunAndAddToScene() {
+export function createSun() {
   const loadTexture = new THREE.TextureLoader();
 
   const sunTexturePath = "/assets/textures/sun_detailed.png"
