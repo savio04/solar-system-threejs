@@ -77,9 +77,12 @@ const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
 
 // BLOOM PASS
-const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1, 0.4, 0.80);
-bloomPass.threshold = 1;
-bloomPass.radius = 0.9;
+const bloomPass = new UnrealBloomPass(
+  new THREE.Vector2(window.innerWidth, window.innerHeight),
+  1,
+  0.9,
+  1
+);
 composer.addPass(bloomPass);
 
 // CONTROLS
