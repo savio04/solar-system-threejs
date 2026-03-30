@@ -3,7 +3,7 @@
 
 Este projeto tem como objetivo criar uma simulação visual interativa do Sistema Solar, utilizando o Three.js. Essa biblioteca popular para renderização 3D no navegador permite criar cenários tridimensionais de forma eficiente e flexível. Embora o foco aqui seja representar os planetas e suas órbitas de maneira realista, proporcionando uma experiência imersiva no universo do Sistema Solar, o Three.js não se limita a esse propósito.
 
-[Explore o Sistema Solar com Three.js - Simulação Interativa](https://sistema-solar.fun)
+[Explore o Sistema Solar com Three.js - Simulação Interativa](https://solar-system-threejs-git-main-savio04s-projects.vercel.app)
 
 [Assista ao vídeo no YouTube](https://youtu.be/TwrXdc8JPH0)
 
